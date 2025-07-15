@@ -5,25 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Registration</title>
   <script>
-    function registerProfile() {
+    // Function to handle form submission and redirect to the next page
+    function registerProfile(event) {
+      event.preventDefault();
+
+      // Getting values from form inputs
       const username = document.getElementById('username').value;
       const email = document.getElementById('email').value;
       const age = document.getElementById('age').value;
       const bio = document.getElementById('bio').value;
-      document.getElementById('profile-info').innerHTML = `
-        <h3>Profile Registered Successfully!</h3>
-        <p><strong>Username:</strong> ${username}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Age:</strong> ${age}</p>
-        <p><strong>Bio:</strong> ${bio}</p>
-      `;
-      document.getElementById('profile-form').reset();
+
+      // Redirecting to profile.html with query parameters
+      window.location.href = `profile.html?username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&age=${encodeURIComponent(age)}&bio=${encodeURIComponent(bio)}`;
     }
   </script>
 </head>
 <body>
   <h1>Profile Registration</h1>
-  <form id="profile-form" onsubmit="event.preventDefault(); registerProfile();">
+  
+  <!-- Profile Registration Form -->
+  <form id="profile-form" onsubmit="registerProfile(event)">
     <label for="username">Username:</label>
     <input type="text" id="username" required><br><br>
 
@@ -38,6 +39,5 @@
 
     <button type="submit">Register</button>
   </form>
-  <div id="profile-info"></div>
 </body>
 </html>
