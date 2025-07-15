@@ -3,32 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Web Page</title>
+  <title>Profile Registration</title>
   <script>
-    function changeContent() {
-      document.getElementById('dynamic-content').innerHTML = 'The content has changed dynamically!';
-    }
-    function showAlert() {
-      alert('You clicked the button!');
-    }
-    function changeBackgroundColor() {
-      document.body.style.backgroundColor = document.getElementById('color-input').value;
+    function registerProfile() {
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const age = document.getElementById('age').value;
+      const bio = document.getElementById('bio').value;
+      document.getElementById('profile-info').innerHTML = `
+        <h3>Profile Registered Successfully!</h3>
+        <p><strong>Username:</strong> ${username}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Age:</strong> ${age}</p>
+        <p><strong>Bio:</strong> ${bio}</p>
+      `;
+      document.getElementById('profile-form').reset();
     }
   </script>
 </head>
 <body>
-  <h1>Welcome to the Dynamic Web Page!</h1>
-  
-  <p id="dynamic-content">This content will change when you click the button.</p>
-  <button onclick="changeContent()">Change Content</button>
-  
-  <br><br>
+  <h1>Profile Registration</h1>
+  <form id="profile-form" onsubmit="event.preventDefault(); registerProfile();">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required><br><br>
 
-  <button onclick="showAlert()">Click Me!</button>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br><br>
 
-  <br><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" required><br><br>
 
-  <label for="color-input">Pick a background color:</label>
-  <input type="color" id="color-input" onchange="changeBackgroundColor()">
+    <label for="bio">Bio:</label>
+    <textarea id="bio" required></textarea><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+  <div id="profile-info"></div>
 </body>
 </html>
