@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Function to display user profile details
+    function displayProfile() {
+      const username = getQueryParam('username');
+      const email = getQueryParam('email');
+      const age = getQueryParam('age');
+      const bio = getQueryParam('bio');
+
+      // Displaying the profile information
+      document.getElementById('profile-info').innerHTML = `
+        <h3>Profile Registered Successfully!</h3>
+        <p><strong>Username:</strong> ${username}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Age:</strong> ${age}</p>
+        <p><strong>Bio:</strong> ${bio}</p>
+      `;
+    }
+
+    // Call the function to display the profile once the page loads
+    window.onload = displayProfile;
+  </script>
+</head>
+<body>
+  <h1>Your Profile</h1>
+  
+  <!-- Dynamic Profile Display Section -->
+  <div id="profile-info"></div>
+</body>
+</html>
